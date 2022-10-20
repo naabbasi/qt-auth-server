@@ -1,0 +1,26 @@
+
+server:
+  port: 8080
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          login-client:
+            provider: spring
+            client-id: login-client
+            client-secret: openid-connect
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            #authorization-grant-type: client_credentials
+            redirect-uri: http://127.0.0.1:8080/login/oauth2/code/login-client
+            #scope: openid,profile #//profile will activate the consent selection screen, disable in client too.
+            scope: openid
+            client-name: Spring
+        provider:
+          spring:
+            authorization-uri: http://hpitdlp20795:9000/oauth2/authorize
+            token-uri: http://hpitdlp20795:9000/oauth2/token
+            jwk-set-uri: http://hpitdlp20795:9000/oauth2/jwks
+debug: true
